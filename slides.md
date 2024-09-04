@@ -3,7 +3,7 @@
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
+background: /growtika-ZfVyuV8l7WU-unsplash.jpg 
 # some information about your slides (markdown enabled)
 title: Welcome to Microservices architecture design introduction
 info: |
@@ -36,6 +36,17 @@ addons:
 
 ### Alexandre Touret
 
+---
+layout: intro
+--- 
+
+# Alexandre Touret
+
+## Architecte logiciel à Worldline
+
+### <mdi-open-in-browser /> https://blog.touret.info
+### <mdi-github /> https://github.com/alexandre-touret/
+### <mdi-linkedin/> https://www.linkedin.com/in/atouret/
 
 ---
 src: ./pages/01-introduction.md
