@@ -3,7 +3,7 @@
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: /growtika-ZfVyuV8l7WU-unsplash.jpg 
+background: /growtika-ZfVyuV8l7WU-unsplash.webp 
 # some information about your slides (markdown enabled)
 title: Welcome to Microservices architecture design introduction
 info: |
@@ -50,4 +50,16 @@ layout: intro
 
 ---
 src: ./pages/01-introduction.md
+---
+
+---
+src: ./pages/02-fundamentals.md
+---
+
+---
+src: ./pages/03-protocols.md
+---
+
+---
+src: ./pages/04-loosecoupling.md
 ---
