@@ -1,20 +1,47 @@
 
----
-
 # Couplage lâche
 
-> Le couplage fait référence au degré d'interdépendance entre les différents modules, composants ou classes d'un système logiciel. Un couplage fort signifie que les modules sont fortement interconnectés et dépendent étroitement les uns des autres, tandis qu'un couplage faible indique une interdépendance minimale entre les modules. 
-> Le couplage est une mesure importante de la qualité du design logiciel, car un couplage fort peut rendre le système difficile à maintenir, à modifier et à tester. En revanche, un couplage faible favorise la modularité, la réutilisabilité et la maintenabilité du code.
+> Le couplage fait référence au <span v-mark.circle.red>degré d'interdépendance entre les différents modules</span>, composants ou classes d'un système logiciel. Un couplage fort signifie que les modules sont fortement interconnectés et dépendent étroitement les uns des autres, tandis qu'un couplage faible indique une interdépendance minimale entre les modules. 
+> Le couplage est une mesure importante de la qualité du design logiciel, car <span v-mark.circle.red>un couplage fort peut rendre le système difficile à maintenir, à modifier et à tester</span>. En revanche, un couplage faible favorise la modularité, la réutilisabilité et la maintenabilité du code.
 
 ---
 
 ## Qu'est-ce qui crée du couplage dans les architecturs microservices ?
 
-1. Couplage comportemental 
-2. Couplage des connaissances
-3. Couplage temporel
-4. Couplage d'implémentation
-5. Couplage basé sur la localisation 
+### Couplage comportemental
+
+* Description : Se produit lorsque des services partagent des responsabilités dans les processus métier. 
+* Conséquence : Si un service nécessite l'aide directe d'un autre pour accomplir ses tâches, cela indique que les périmètres des services n'ont pas été correctement définis.
+
+### Couplage des connaissances
+
+* Description : Se produit lorsque les services connaissent trop bien les implémentations internes des autres.
+
+### Couplage des schémas
+
+* Description : Se produit lorsque les services sont liés à un ensemble commun d'interfaces ou de schémas.
+
+
+### Couplage temporel
+
+* Description : Se produit lorsqu'un service attend une réponse immédiate d'un autre avant de pouvoir continuer.
+
+---
+
+### Couplage des processus
+
+* Description : Se produit lorsque les services commencent à assumer trop de responsabilités distinctes.
+* Conséquence : Donne lieu à des implémentations de services gonflées difficiles à mettre à l'échelle ou à modifier. 
+
+
+### Couplage d'implémentation
+
+* Description : Se produit lorsque les services partagent des détails d'implémentation plutôt que des contrats ou des schémas.
+* Conséquence : Les API qui laissent échapper des détails d'implémentation.
+
+### Couplage basé sur la localisation :
+
+* Description : Se produit lorsqu'un service s'attend à ce qu'une ressource existe à un emplacement spécifique.
 
 <!-- 
 Couplage comportemental :
@@ -22,6 +49,7 @@ Couplage comportemental :
 Description : Se produit lorsque des services partagent des responsabilités dans les processus métier. Par exemple, plusieurs services peuvent être impliqués dans la production d'une facture.
 Conséquence : Si un service nécessite l'aide directe d'un autre pour accomplir ses tâches, cela indique que les périmètres des services n'ont pas été correctement définis.
 Solution : Redéfinir les frontières entre services pour éliminer les communications excessivement fréquentes. Opter pour des interactions basées sur des événements via la messagerie plutôt que des commandes directes ou des interactions de type RPC.
+
 Couplage des connaissances :
 
 Description : Se produit lorsque les services connaissent trop bien les implémentations internes des autres. Par exemple, l'émetteur d'une requête sait comment le récepteur répondra.
@@ -31,15 +59,18 @@ Couplage des schémas :
 Description : Se produit lorsque les services sont liés à un ensemble commun d'interfaces ou de schémas.
 Conséquence : Les services doivent pouvoir modifier leurs données internes sans rien casser. Modifier les interfaces de données externes est plus délicat car cela impacte les services collaboratifs.
 Solution : Les clients doivent agir en tant que lecteurs tolérants, en ne consommant que les parties nécessaires d'un contrat d'API, réduisant ainsi leur vulnérabilité aux changements d'API.
+
 Couplage temporel :
 
 Description : Se produit lorsqu'un service attend une réponse immédiate d'un autre avant de pouvoir continuer.
 Contexte : Prévalent dans les systèmes utilisant de nombreuses interactions de type requête/réponse, comme les microservices basés sur REST ou gRPC.
 Solution : Revoir les périmètres de service pour éviter les attentes sur les services externes. En cas de services plus petits, il est crucial d'avoir une gestion robuste des échecs pour gérer les délais d'attente et les erreurs transitoires.
+
 Couplage des processus :
 
 Description : Se produit lorsque les services commencent à assumer trop de responsabilités distinctes.
 Conséquence : Donne lieu à des implémentations de services gonflées difficiles à mettre à l'échelle ou à modifier. Les plateformes CRM ou ERP comme Salesforce ou SAP sont des exemples extrêmes de ce type.
+
 Couplage d'implémentation :
 
 Description : Se produit lorsque les services partagent des détails d'implémentation plutôt que des contrats ou des schémas.
