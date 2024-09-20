@@ -63,3 +63,7 @@ src: ./pages/03-protocols.md
 ---
 src: ./pages/04-loosecoupling.md
 ---
+
+---
+src: ./pages/05-messaging.md
+---

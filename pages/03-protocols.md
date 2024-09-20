@@ -1,6 +1,3 @@
-
----
-
 # Protocoles
 
 Il y a deux types de flux utilisés dans les connexions entre services :
