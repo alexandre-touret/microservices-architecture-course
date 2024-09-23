@@ -273,7 +273,7 @@ backgroundSize: 20em
 | REST | Simplicité de mise en oeuvre , Stateless, interopérabilité, utilisation des standards du Web | Manque de fléxibilité dans les requêtes, gestion des versions, évolutivité, surcharge réseau |
 | GrahQL | Flexibilité, efficacité, évolutivité, documentation automatique | Pas de cache possible, tout passe par une requête POST, complexité de mise en oeuvre |
 
-::right::
+--- 
 
 #### Avantages de GraphQL
 
