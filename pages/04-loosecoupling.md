@@ -31,7 +31,7 @@
 ### Couplage des processus
 
 * Description : Se produit lorsque les services commencent à assumer trop de responsabilités distinctes.
-* Conséquence : Donne lieu à des implémentations de services gonflées difficiles à mettre à l'échelle ou à modifier. 
+* Conséquence : Donne lieu à des implémentations de services difficiles à mettre à l'échelle ou à modifier. 
 
 
 ### Couplage d'implémentation
