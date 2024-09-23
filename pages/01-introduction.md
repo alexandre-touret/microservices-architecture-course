@@ -7,4 +7,3 @@ Les points abordés seront:
 * Protocoles (HTTP, REST, GRAPHQL, GRPC)
 * Couplage lâche
 * Cohérence des données, transactions distribuées et utilisation de messageries asynchrones
-* Comment casser un monolithe ?
