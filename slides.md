@@ -71,3 +71,7 @@ src: ./pages/05-messaging.md
 ---
 src: ./pages/06-distributed-transaction.md
 ---
+
+---
+src: ./pages/07-observability.md
+---
