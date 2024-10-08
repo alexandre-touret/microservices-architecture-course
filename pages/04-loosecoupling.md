@@ -6,7 +6,7 @@
 
 ---
 
-## Qu'est-ce qui crée du couplage dans les architecturs microservices ?
+## Qu'est-ce qui crée du couplage dans les architectures microservices ?
 
 ### Couplage comportemental
 
@@ -21,12 +21,13 @@
 
 * Description : Se produit lorsque les services sont liés à un ensemble commun d'interfaces ou de schémas.
 
+---
 
 ### Couplage temporel
 
 * Description : Se produit lorsqu'un service attend une réponse immédiate d'un autre avant de pouvoir continuer.
 
----
+
 
 ### Couplage des processus
 
