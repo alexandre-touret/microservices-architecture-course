@@ -94,6 +94,13 @@ Un exemple de log dans un format structuré:
 * Assurer que les logs puissent être lus par un outil externe (comme un agrégateur de logs).
 * Ne pas exposer de données sensibles dans les logs en respectant les normes de confidentialité telles que GDPR et PCI DSS.
 
+
+---
+
+#### Les agrégateurs de logs
+
+![log-explorer](/log-explorer.png)
+
 ---
 layout: two-cols
 ---
@@ -120,3 +127,159 @@ layout: two-cols
 ---
 
 ![jaeger](/jaeger-2.webp)
+
+
+--- 
+
+### Un exemple d'implémentation
+
+Une application de paiement basée sur des microservices 
+
+```plantuml
+@startuml   architecture
+!include <C4/C4_Container>
+!include <C4/C4_Context>
+!include <C4/C4_Component>
+AddContainerTag("grafana", $bgColor="46beaa",$borderColor="green", $fontColor="white", $shadowing="true")
+LAYOUT_LANDSCAPE()
+HIDE_STEREOTYPE()
+
+Person(customerA, "Customer", "A customer")
+System_Ext(smartBankGateway,"Smart Bank Gateway")
+        Container_Boundary(b1,"Easy Pay System"){
+            Container(gateway,"API Gateway","Spring Cloud Gateway","Exposes the APIs")
+            Container(easypay,"EasyPay","Spring Boot","Exposes an API, checks POS & card, authorizes the payment")
+            Container(merchantBo,"Merchant Back Office")
+            Container(fraudDetect,"Fraud Detection")
+            ContainerDb(database,"PostgreSQL","PostgreSQL")
+            ContainerDb(database1,"PostgreSQL","PostgreSQL")
+            ContainerDb(database2,"PostgreSQL","PostgreSQL")
+            ContainerQueue(kafka,"kafka","kafka")
+'            Container(collector,"OTEL Collector","OpenTelemetry Collector",$tags="grafana")
+            Container(discoveryServer,"Discovery Server")
+            Container(configurationServer,"Configuration Server")
+'            ContainerDb(tempo,"Tempo","Tempo","Stores traces",$tags="grafana")
+'            Container(grafana,"Grafana","Renders data & provides dashboards",$tags="grafana")
+'            ContainerDb(prometheus,"Prometheus", "Collects and stores metrics",$tags="grafana")
+        }
+      Rel(customerA,gateway,"Calls an API")
+      Rel(gateway,easypay,"HTTPS")
+      Rel(easypay, database,"JDBC")
+      Rel(easypay, kafka,"kafka","Broadcasts payment information")
+      Rel(merchantBo, kafka,"kafka","Gets payments")
+      Rel(fraudDetect, kafka,"kafka","Gets payments")
+      Rel(merchantBo, database1,"JDBC")
+      Rel(fraudDetect, database2,"JDBC")
+'      Rel(prometheus,easypay,"Grabs metrics")
+'      Rel(gateway,collector,"broadcasts spans")
+'      Rel(merchantBo,collector,"broadcasts spans")
+'      Rel(fraudDetect,collector,"broadcasts spans")
+'      Rel(easypay,collector,"broadcasts spans")
+      Rel(easypay,smartBankGateway,"Sends payment")
+'      Rel(collector,tempo,"stores spans")
+'      Rel(grafana, prometheus,"Query metrics")
+'      Rel(grafana,tempo,"query spans")
+'      Lay_D(grafana, collector)
+      Lay_L(fraudDetect,kafka)
+      Lay_L(merchantBo,kafka)
+@enduml
+
+```
+
+---
+
+##### Utilisation de la plateforme Grafana
+
+* Loki[@loki] va stocker les logs
+* Tempo[@tempo] va stocker les traces
+* OTEL Collector[otel-collector] va collecter les logs et traces
+* Grafana[@grafana-stack] va permettre l'affichage et la recherche
+
+
+```plantuml
+@startuml   architecture
+!include <C4/C4_Container>
+!include <C4/C4_Context>
+!include <C4/C4_Component>
+AddContainerTag("grafana", $bgColor="46beaa",$borderColor="green", $fontColor="white", $shadowing="true")
+LAYOUT_LANDSCAPE()
+HIDE_STEREOTYPE()
+
+Person(customerA, "Customer", "A customer")
+System_Ext(smartBankGateway,"Smart Bank Gateway")
+        Container_Boundary(b1,"Easy Pay System"){
+            Container(gateway,"API Gateway","Spring Cloud Gateway","Exposes the APIs")
+            Container(easypay,"EasyPay","Spring Boot","Exposes an API, checks POS & card, authorizes the payment")
+            Container(merchantBo,"Merchant Back Office")
+            Container(fraudDetect,"Fraud Detection")
+            ContainerDb(database,"PostgreSQL","PostgreSQL")
+            ContainerDb(database1,"PostgreSQL","PostgreSQL")
+            ContainerDb(database2,"PostgreSQL","PostgreSQL")
+
+            ContainerQueue(kafka,"kafka","kafka")
+            Container(collector,"OTEL Collector","OpenTelemetry Collector",$tags="grafana")
+            Container(discoveryServer,"Discovery Server")
+            Container(configurationServer,"Configuration Server")
+            ContainerDb(tempo,"Tempo","Tempo","Stores traces",$tags="grafana")
+            ContainerDb(loki,"Loki","Loki","Stores Logs",$tags="grafana")
+            Container(grafana,"Grafana","Renders data & provides dashboards",$tags="grafana")
+            ContainerDb(prometheus,"Prometheus", "Collects and stores metrics",$tags="grafana")
+        }
+      Rel(customerA,gateway,"Calls an API")
+      Rel(gateway,easypay,"HTTPS")
+      Rel(easypay, database,"JDBC")
+      Rel(easypay, kafka,"kafka","Broadcasts payment information")
+      Rel(merchantBo, kafka,"kafka","Gets payments")
+      Rel(fraudDetect, kafka,"kafka","Gets payments")
+      Rel(prometheus,easypay,"Grabs metrics")
+      Rel(prometheus,fraudDetect,"Grabs metrics")
+      Rel(prometheus,merchantBo,"Grabs metrics")
+      Rel(prometheus,gateway,"Grabs metrics")
+      Rel(merchantBo, database1,"JDBC")
+            Rel(fraudDetect, database2,"JDBC")
+      Rel(gateway,collector,"broadcasts spans & logs")
+      Rel(merchantBo,collector,"broadcasts spans & logs")
+      Rel(fraudDetect,collector,"broadcasts spans & logs")
+      Rel(easypay,collector,"broadcasts spans")
+      Rel(easypay,smartBankGateway,"Sends payment")
+      Rel(collector,tempo,"stores spans")
+      Rel(collector,loki,"stores logs")
+      Rel(grafana, prometheus,"Query metrics")
+      Rel(grafana,tempo,"query spans")
+      Rel(grafana,loki,"query logs")
+'      Lay_D(grafana, collector)
+      Lay_L(fraudDetect,kafka)
+      Lay_L(merchantBo,kafka)
+@enduml
+
+```
+
+
+---
+
+##### Zoom sur un service
+
+```plantuml
+@startuml   architecture
+!include <C4/C4_Container>
+!include <C4/C4_Context>
+!include <C4/C4_Component>
+AddContainerTag("grafana", $bgColor="46beaa",$borderColor="green", $fontColor="white", $shadowing="true")
+LAYOUT_LANDSCAPE()
+HIDE_STEREOTYPE()
+
+            Container(easypay,"EasyPay","Spring Boot","Exposes an API, checks POS & card, authorizes the payment")
+            Container(collector,"OTEL Collector","OpenTelemetry Collector",$tags="grafana")
+            ContainerDb(tempo,"Tempo","Tempo","Stores traces",$tags="grafana")
+            ContainerDb(loki,"Loki","Loki","Stores Logs",$tags="grafana")
+            Container(grafana,"Grafana","Renders data & provides dashboards",$tags="grafana")
+            ContainerDb(prometheus,"Prometheus", "Collects and stores metrics",$tags="grafana")
+       Rel(easypay,collector,"Sends traces & logs")
+      Rel(collector,tempo,"stores spans")
+      Rel(collector,loki,"stores logs")
+      Rel(grafana, prometheus,"Query metrics")
+      Rel(grafana,tempo,"query spans")
+      Rel(grafana,loki,"query logs")
+@enduml
+
+```

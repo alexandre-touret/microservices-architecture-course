@@ -273,15 +273,6 @@ backgroundSize: 20em
 | REST | Simplicité de mise en oeuvre , Stateless, interopérabilité, utilisation des standards du Web | Manque de fléxibilité dans les requêtes, gestion des versions, évolutivité, surcharge réseau |
 | GrahQL | Flexibilité, efficacité, évolutivité, documentation automatique | Pas de cache possible, tout passe par une requête POST, complexité de mise en oeuvre |
 
---- 
-
-#### Avantages de GraphQL
-
-* Flexibilité
-* Efficacité
-* Evolutivité
-* Documentation automatique
-
 <!--
 * Flexibilité : Les clients peuvent demander exactement les données dont ils ont besoin, réduisant ainsi la quantité de données transférées.
 * Efficacité : Une seule requête peut récupérer toutes les données nécessaires, réduisant le nombre de requêtes HTTP nécessaires.

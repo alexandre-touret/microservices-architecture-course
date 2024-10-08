@@ -108,7 +108,7 @@ Rel(bogui,billingService,"manages Billing")
 
 ---
 
-## Les Long Running Tasks
+## Les Long Running Actions
 
 ### Définition
 
@@ -189,15 +189,10 @@ Lay_D(billingAPI,customerAPI)
 
 ```
 
-
 ### Caractéristiques
 
-* Durée Prolongée 
-* Complexité 
-* État Intermédiaire 
-* Scalabilité 
-* Tolérance aux Erreurs 
-
+| Durée prolongée| Complexité | État Intermédiaire  | Scalabilité | Tolérance aux Erreurs 
+| --- | --- | --- |--- | --- |
 
 <!--
 Durée Prolongée : Ces actions peuvent prendre des secondes, des minutes, voire des heures pour se terminer.
@@ -222,3 +217,6 @@ Tolérance aux Erreurs : Doivent gérer les échecs de manière appropriée et p
 
 ## Le pattern SAGA
 
+![saga1](https://microservices.io/i/sagas/From_2PC_To_Saga.png)[@saga-pattern]
+
+Source: [Microservices Patterns](https://microservices.io/patterns/data/saga.html)
