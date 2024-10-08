@@ -8,6 +8,8 @@ Les propriétés ACID se prêtent bien aux monolithes:
 * Isolation
 * Durabilité
 
+Source: Wikipedia [@acid]
+
 ```plantuml
 @startuml monolith
 !include <C4/C4_Container>
@@ -46,8 +48,6 @@ Rel(persistenceLayer,db," ","JDBC")
 @enduml
 
 ```
-
-
 
 --- 
 
