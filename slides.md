@@ -69,6 +69,10 @@ src: ./pages/05-messaging.md
 ---
 
 ---
+src: ./pages/08-patterns.md
+---
+
+---
 src: ./pages/06-distributed-transaction.md
 ---
 
