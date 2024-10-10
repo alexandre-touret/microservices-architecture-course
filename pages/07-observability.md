@@ -192,7 +192,7 @@ System_Ext(smartBankGateway,"Smart Bank Gateway")
 
 * Loki[@loki] va stocker les logs
 * Tempo[@tempo] va stocker les traces
-* OTEL Collector[otel-collector] va collecter les logs et traces
+* OTEL Collector[@otel-collector] va collecter les logs et traces
 * Grafana[@grafana-stack] va permettre l'affichage et la recherche
 
 
