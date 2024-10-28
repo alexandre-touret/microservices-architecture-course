@@ -1,4 +1,11 @@
+---
+layout: section
+---
+
 # Transactions distribuées
+
+---
+
 ## Rappels : ACID
 
 * Atomicité

@@ -1,5 +1,10 @@
+---
+layout: section
+---
+
 # Communication inter services
-## 
+
+--- 
 
 Les architectures microservices offrent leur capacité à décomposer les applications en services indépendants et faiblement couplés. 
 La communication entre les services est cruciale pour le fonctionnement harmonieux de l'ensemble du système. 
@@ -11,6 +16,7 @@ Ces dernières améliorent la résilience, la scalabilité et la flexibilité de
 --- 
 layout: two-cols
 --- 
+
 ## Qu'est-ce qu'une messagerie asynchrone ?
 
 ### Transaction synchrone 
@@ -130,6 +136,8 @@ Kakfka, Artemis, RabbitMQ
 ---
 layout: two-cols
 ---
+
+
 ## Modèles de communication
 ### Point-à-Point
 

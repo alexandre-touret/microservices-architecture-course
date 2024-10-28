@@ -81,5 +81,9 @@ src: ./pages/07-observability.md
 ---
 
 ---
+src: ./pages/09-security.md
+---
+
+---
 src: ./pages/99-bibliography.md
 ---
