@@ -1,8 +1,13 @@
 ---
-layout: center
---- 
+layout: section
+---
 
 # Couplage
+
+
+---
+layout: center
+--- 
 
 ## Définition
 

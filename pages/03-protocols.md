@@ -1,9 +1,22 @@
+---
+layout: section
+---
+
 # Protocoles
+
+---
+layout: two-cols
+
+---
 
 Il y a deux types de flux utilisés dans les connexions entre services :
 
 * Synchrones: Utilisation de protocoles basés sur HTTP ou GRPC
 * Asynchrones: Utilisation de messageries asynchrones ou streaming de de données
+
+::right::
+
+![asynchronous](/public/asynchronous_illustration.png)
 
 ---
 
@@ -12,7 +25,7 @@ Il y a deux types de flux utilisés dans les connexions entre services :
 Deux grandes familles de protocole sont utilisées dans les transactions synchrones
 
 
-| Fonctionnalité               | gRPC                         | API HTTP avec JSON          |
+| **Fonctionnalité**               | **gRPC**                         | **API HTTP avec JSON**          |
 |------------------------------|------------------------------|-----------------------------|
 | Contrat                      | Obligatoire (.proto)         | Facultatif (OpenAPI)        |
 | Protocole                    | HTTP/2                       | HTTP                        |
@@ -100,7 +113,7 @@ Les API REST sont largement utilisées en raison de leur simplicité, de leur fl
 
 ---
 
-#### HATEOAS
+### HATEOAS
 
 HATEOAS (Hypermedia As The Engine Of Application State) est une contrainte de l'architecture REST selon laquelle un client interagit avec une application entièrement par le biais de ressources dynamiques fournies par le serveur. Ces ressources contiennent des liens hypermedia qui indiquent les actions possibles et les transitions d'état. 
 
@@ -152,7 +165,7 @@ Voici une API pour une boutique en ligne. Une réponse pour obtenir les détails
 layout: two-cols
 ---
 
-#### Modèle de maturité de Richardson
+### Modèle de maturité de Richardson
 
 Ce modèle évalue la maturité d'une API REST en quatre niveaux (0 à 3), chacun  ajoutant des caractéristiques supplémentaires qui rapprochent l'API des principes RESTful.
 
@@ -268,7 +281,7 @@ backgroundSize: 20em
 
 ### En résumé
 
-| Technologie | Avantages | Inconvénients |
+| **Technologie** | **Avantages** | **Inconvénients** |
 | --- | --- | --- |
 | REST | Simplicité de mise en oeuvre , Stateless, interopérabilité, utilisation des standards du Web | Manque de fléxibilité dans les requêtes, gestion des versions, évolutivité, surcharge réseau |
 | GrahQL | Flexibilité, efficacité, évolutivité, documentation automatique | Pas de cache possible, tout passe par une requête POST, complexité de mise en oeuvre |
