@@ -7,7 +7,144 @@ layout: section
 
 ---
 
-## Authentification et autorisation
+## Principaux défis
+
+* Décentralisation
+* Multiplicité des points d’accès et d’exposition
+* Complexité des communications inter-services sécurisées
+* Gestion des secrets et des configurations sécurisées
+* Sécurisation des données en transit et au repos
+
+---
+layout: two-cols
+---
+
+## Authentification 
+
+L’authentification est le processus de vérification de l’identité d'un utilisateur ou d'un service pour s'assurer qu’il est bien celui qu’il prétend être.
+
+Dans une architecture microservices, chaque requête doit être authentifiée avant d'accéder aux ressources pour éviter l'accès non autorisé.
+
+Protocoles: OpenID Connect
+
+::right::
+
+## Autorisation
+
+L’autorisation est le processus de contrôle d'accès aux ressources ou actions en fonction des droits d'un utilisateur ou d'un service. 
+
+Après l’authentification, l'autorisation permet de déterminer les actions qu'un utilisateur est habilité à effectuer. 
+
+Dans une architecture microservices, chaque service doit vérifier l’autorisation de l’utilisateur pour garantir un accès sécurisé et approprié.
+
+Protocoles: OAuthv2
+
+
+---
+layout: two-cols
+---
+
+## Authentification avec JSON Web Token (JWT)
+
+1. Connexion de l'utilisateur 
+2. Vérification des identifiants
+3. Création d'un jeton 
+4. Envoi du fichier à l'utilisateur
+5. Vérification et utilisation du jeton dans toutes les requêtes avec l'en-tête ``Àuthorization: Bearer <token>``
+
+::right::
+
+```plantuml
+@startuml
+hide footbox
+actor Utilisateur as user
+box "SSO \n " #LightBlue
+participant "SSO" as iam
+end box
+box "Idp" #LightGreen
+participant IdP as idp
+end box
+
+box "Gateway" #LightYellow
+participant "API Gateway" as gateway
+participant "Resource API" as api
+end box
+
+user -> iam: POST
+iam -> idp: POST /token
+note over idp: Identification
+
+alt cas nominal
+    idp --> iam: 200 OK
+    user -> gateway : GET /accounts/{ID}
+    note over gateway: Checks the token stored in the Authorization header
+
+    gateway -> gateway : Validates the \n token integrity \n and if the user is \n identified
+    gateway -> api : "GET /accounts/{ID}"
+    api -> api: Validates \n the token \n integrity
+    api --> user: Returns data
+
+
+end
+alt Erreur de validation de l'ID token
+    idp --> user: 400
+end
+@enduml
+```
+
+---
+layout: two-cols
+---
+
+### Anatomie d'un jeton JWT
+
+Les JWT sont définis par la RFC 7519[@rfc-7519] Ils sont composés de trois parties :
+
+* Header : Contient des informations sur le type de token (JWT) et l'algorithme de signature utilisé.
+* Payload : Contient les informations ou claims de l’utilisateur (ex., ID, rôle, permissions).
+* Signature : Une signature générée avec la clé secrète, qui garantit l’intégrité du token.
+
+La version encodée :
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwi 
+bmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2Q T  
+4fwpMeJf36POk6yJV_adQssw5c 
+```
+
+Pour valider des JWT : [https://jwt.io/](https://jwt.io/)
+
+::right::
+
+L' en-tête
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9  
+  
+{  
+  "alg": "HS256",  
+  "typ": "JWT"  
+} 
+```
+
+Le Payload
+
+```
+eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ  
+  
+{  
+  "sub": "1234567890",  
+  "name": "John Doe",  
+  "iat": 1516239022  
+} 
+```
+
+La signature
+
+```
+SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c 
+```
+
 
 <!-- 
 Dans le contexte des microservices, la sécurité est essentielle car chaque service expose des interfaces, communique avec d'autres services, et manipule potentiellement des données sensibles. Voici les principales notions de sécurité qui devraient être abordées dans un cours universitaire sur les microservices :
