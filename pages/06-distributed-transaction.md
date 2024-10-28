@@ -1,8 +1,6 @@
 # Transactions distribuées
 ## Rappels : ACID
 
-Les propriétés ACID se prêtent bien aux monolithes:
-
 * Atomicité
 * Cohérence
 * Isolation
@@ -107,12 +105,17 @@ Rel(bogui,billingService,"manages Billing")
 * <span v-click>Comment piloter une transaction de bout en bout ?</span> 
 
 ---
-
+layout: center
+---
 ## Les Long Running Actions
 
 ### Définition
 
-> Les "long running actions" dans le contexte des microservices sont des opérations qui durent longtemps, souvent beaucoup plus que la durée typique d'une requête HTTP. Ces opérations prolongées peuvent inclure des traitements complexes, des calculs intensifs, la génération de rapports, l'intégration avec des systèmes externes, la migration de données, etc. Gérer ces actions efficacement est crucial pour maintenir la performance, la scalabilité et la résilience de l'ensemble du système de microservices.
+Les "long running actions" dans le contexte des microservices sont des opérations qui durent longtemps, souvent beaucoup plus que la durée typique d'une requête HTTP. 
+
+Ces opérations prolongées peuvent inclure des traitements complexes, des calculs intensifs, la génération de rapports, l'intégration avec des systèmes externes, la migration de données, etc. 
+
+Gérer ces actions efficacement est crucial pour maintenir la performance, la scalabilité et la résilience de l'ensemble du système de microservices.
 
 ---
 
@@ -161,7 +164,7 @@ System_Boundary(donutssystem, "Donuts At Home") {
 }
 
 System_Ext(delivery,"Delivery Information System")
-System_Ext(SIPS,"SIPS")
+System_Ext(SIPS,Payment System)
 
 
 Rel(customer,fogui,"HTTPS")

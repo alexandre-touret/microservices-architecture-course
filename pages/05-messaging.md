@@ -1,4 +1,5 @@
 # Communication inter services
+## 
 
 Les architectures microservices offrent leur capacité à décomposer les applications en services indépendants et faiblement couplés. 
 La communication entre les services est cruciale pour le fonctionnement harmonieux de l'ensemble du système. 
@@ -38,7 +39,7 @@ System_Boundary(donutssystem, "Donuts At Home") {
     }
 }
 
-System_Ext(SIPS,"SIPS"," online secure credit card payment ")
+System_Ext(SIPS,Payment System," online secure credit card payment ")
 
 
 
@@ -84,7 +85,7 @@ System_Boundary(donutssystem, "Donuts At Home") {
     }
 }
 
-System_Ext(SIPS,"SIPS"," online secure credit card payment ")
+System_Ext(SIPS,Payment System," online secure credit card payment ")
 
 
 
@@ -101,6 +102,8 @@ Rel(paymentconnect,eventManager,"Kafka")
 @enduml
 
 ```
+---
+layout: two-cols
 ---
 
 ## Pourquoi les utiliser ?
@@ -119,6 +122,10 @@ Rel(paymentconnect,eventManager,"Kafka")
 ## Exemples
 
 Kakfka, Artemis, RabbitMQ
+
+::right::
+
+![illustration](/public/asynchronous_illustration.png)
 
 ---
 layout: two-cols

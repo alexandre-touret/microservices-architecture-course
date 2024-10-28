@@ -6,9 +6,8 @@ Les points abordés seront:
 * Fondamentaux (Pourquoi? Les défis, comment les concevoir)
 * Protocoles (HTTP, REST, GRAPHQL, GRPC)
 * Couplage lâche
-* Cohérence des données 
 * Utilisation de messageries asynchrones
 * Quelques patterns : API Gateway, Back For Front
-* Transactions distributées
+* Transactions distributées et cohérence des données 
 * Monitoring & Observabilité (Optionnel)
 * Sécurité (Optionnel)

@@ -182,7 +182,7 @@ System_Boundary(donutssystem, "Truffade At Home") {
 }
 
 System_Ext(delivery,"Delivery Information System")
-System_Ext(SIPS,"SIPS")
+System_Ext(PaymentSystem,"Payment System")
 
 
 Rel(customer,fogui,"HTTPS")
@@ -193,7 +193,7 @@ Rel(shoppingService,shoppingDb,"JDBC")
 
 Rel(customerService,customerDb,"JDBC")
 Rel(shoppingService,billingService,"HTTPS")
-Rel(shoppingService,SIPS,"HTTPS")
+Rel(shoppingService,PaymentSystem,"HTTPS")
 Rel(shoppingService,delivery,"HTTPS")
 Rel(billingService,billingDb,"JDBC")
 Rel(billingService,billingS3,"HTTPS")
