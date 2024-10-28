@@ -35,7 +35,7 @@ Les API REST (Representational State Transfer) sont un style architectural pour 
 
 --- 
 
-Voici quelques points clés concernant les API REST :
+Voici les notions fondamentales concernant les API REST :
 
 1. Ressources (ex. ``/users/{userId}``)
 2. Verbes HTTP: 
@@ -47,7 +47,7 @@ Voici quelques points clés concernant les API REST :
 3. Sans état (stateless)
 4. Possibilité de mettre en cache les requêtes
 5. Représentation (ex. JSON)
-6. Interface uniforme
+6. Interface uniforme (**c.-à-d. le contrat de services**)
 7. Scalabilité et performance
 
 
@@ -151,30 +151,30 @@ Voici une API pour une boutique en ligne. Une réponse pour obtenir les détails
 ---
 layout: two-cols
 ---
+
 #### Modèle de maturité de Richardson
 
-> Ce modèle évalue la maturité d'une API REST en quatre niveaux (0 à 3), chacun  ajoutant des caractéristiques supplémentaires qui rapprochent l'API des principes RESTful.
+Ce modèle évalue la maturité d'une API REST en quatre niveaux (0 à 3), chacun  ajoutant des caractéristiques supplémentaires qui rapprochent l'API des principes RESTful.
 
-1. **Niveau 0** : Appels à distance uniques
-Exemple : Une API avec une seule URL qui accepte différentes actions via des paramètres.
+* **Niveau 0** : Appels à distance uniques
+Une API avec une seule URL qui accepte différentes actions via des paramètres.
 
-2. **Niveau 1** : Utilisation des ressources
-Exemple :
+* **Niveau 1** : Utilisation des ressources
 * ``GET /users/getUser?id=123``
 * ``POST /users/createUser`` 
 
-3. **Niveau 2** : Verbes HTTP
-Exemple :
+::right::
+* **Niveau 2** : Verbes HTTP
 * ``GET /users/123`` (récupérer les détails de l'utilisateur avec l'ID 123)
 * ``POST /users`` (créer un nouvel utilisateur)
 * ``PUT /users/123`` (mettre à jour l'utilisateur avec l'ID 123)
 * ``DELETE /users/123`` (supprimer l'utilisateur avec l'ID 123)
 
-::right::
-
-4. **Niveau 3** : Hypermedia Controls
+* **Niveau 3** : Hypermedia Controls
 
 À ce niveau, l'API intègre des hyperliens dans les réponses pour guider les clients sur les actions possibles. 
+
+---
 
 **Exemple de réponse HATEOAS**
 

@@ -6,10 +6,10 @@ layout: quote
 
 ## Définition d' Amazon
 
-> Microservices are an architectural and organizational approach to software development where software is composed of small independent services that communicate over well-defined APIs. These services are owned by small, self-contained teams.
+> Microservices are <span v-mark.circle.red>an architectural and organizational approach</span> to software development where software is composed of small independent services that communicate over well-defined APIs. These services are owned by small, self-contained teams.
 > 
 > 
-> Microservices architectures make applications easier to scale and faster to develop, enabling innovation and accelerating time-to-market for new features.
+> Microservices architectures make applications <span v-mark.circle.red>easier to scale and faster to develop</span>, enabling innovation and accelerating time-to-market for new features.
 
 
 ---
