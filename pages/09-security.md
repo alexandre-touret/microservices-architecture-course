@@ -25,7 +25,7 @@ L’authentification est le processus de vérification de l’identité d'un uti
 
 Dans une architecture microservices, chaque requête doit être authentifiée avant d'accéder aux ressources pour éviter l'accès non autorisé.
 
-Protocoles: OpenID Connect
+Protocoles: OpenID Connect[@openid-connect]
 
 ::right::
 
@@ -144,6 +144,74 @@ La signature
 ```
 SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c 
 ```
+
+---
+layout: center
+---
+### Pour aller plus loin
+
+* [OAUTH 2.1 expliqué simplement (même si tu n'es pas dev) ! (Julien Topçu)](https://www.youtube.com/watch?v=YdShQveywpo)
+
+* [Spécification OAuthv2](https://oauth.net/)
+* [Site officiel OpenID Connect](https://openid.net/developers/how-connect-works/)
+
+---
+layout: two-cols
+---
+
+## API Gateway et sécurité des communications
+
+- **API Gateway** : Elle sert de point d'entrée unique, permettant de gérer l'authentification, l’autorisation, la limitation de débit (rate limiting), et d'appliquer des règles de sécurité. 
+
+- **Chiffrement des communications** : Assurer que toutes les communications entre les microservices et avec les clients soient chiffrées (TLS/SSL). 
+
+- **Zero Trust Architecture** [@zero-trust-architecture] : Bien que la gateway aie validée le jeton, les services sous-jacents doivent valider les droits pour chaque API.
+
+<mdi-HeadLightbulbOutline/>  **Bonnes pratiques** : Utiliser HTTPS pour toutes les communications et configurer des certificats SSL pour chaque microservice.
+
+::right::
+
+```plantuml
+@startuml Bookstore
+!include <C4/C4_Container>
+!include <C4/C4_Context>
+!include <C4/C4_Component>
+
+HIDE_STEREOTYPE()
+
+        Container_Boundary(b1,"Bookstore System"){
+            Container(bookstoreApi,"Bookstore API","Spring Boot, Cloud","Exposes the Bookstore APIs")
+            Container(gateway,"API Gateway","Spring Cloud Gateway","Exposes the APIs")
+            Container(isbnApi,"ISBN","Spring Boot, Cloud","Exposes the ISBN APIs")            
+        }
+
+      Rel(gateway, bookstoreApi, "exposes")
+      Rel(gateway, isbnApi, "exposes")
+      Rel(bookstoreApi, isbnApi, "uses")
+@enduml
+
+```
+
+---
+
+## Sécurité des données en transit et au repos
+
+- **Données en transit** : Chiffrer les données en transit entre microservices et avec les clients pour protéger les informations sensibles. Le chiffrement des canaux de communication (HTTPS, TLS) empêche les attaques d’interception.
+
+- **Données au repos** : Chiffrer les bases de données et les systèmes de stockage pour éviter le vol de données en cas de compromission. Utiliser des clés de chiffrement robustes et les protéger avec des solutions de gestion de clés.
+
+<mdi-HeadLightbulbOutline/>  **Bonnes pratiques** : Mettre en œuvre une gestion centralisée des clés et chiffrer systématiquement toutes les données sensibles au repos.
+
+---
+
+## Contrôle des accès réseau et pare-feu
+
+- **Contrôle des accès réseau** : Restreindre les accès réseau entre les microservices pour limiter les chemins d’accès potentiels en cas de compromission. Configurer des réseaux privés virtuels (VPN) pour les communications internes.
+- **Pare-feu et segmentations** : Utiliser des pare-feux et des règles de segmentation pour limiter la visibilité des microservices entre eux et depuis l'extérieur. Une segmentation réseau stricte empêche un attaquant de se déplacer latéralement dans l’architecture.
+
+<mdi-HeadLightbulbOutline/> **Bonnes pratiques** : Mettre en œuvre des contrôles réseau de type *zero trust* pour vérifier chaque communication entre microservices.
+
+
 
 
 <!-- 
