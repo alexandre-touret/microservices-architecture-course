@@ -37,6 +37,8 @@ addons:
 
 ### Alexandre Touret
 
+#### <mdi-CreativeCommons /> Creative Commons Attribution 4.0 International
+
 ---
 layout: intro
 --- 
@@ -86,7 +88,7 @@ src: ./pages/09-security.md
 ---
 
 ---
-src: ./pages/10-books.md
+src: ./pages/10-wrap.md
 ---
 
 ---
@@ -97,3 +99,7 @@ src: ./pages/99-bibliography.md
 layout: end
 ---
 
+# Fin
+## Introduction aux architectures micro services
+## Alexandre Touret
+## <mdi-CreativeCommons /> Creative Commons Attribution 4.0 International
