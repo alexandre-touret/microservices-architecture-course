@@ -23,9 +23,10 @@ download: true
 biblio:
   filename:
     - bibliography.bib
-  locale: 'fr-FR' 
-  numerical_ref: false
+  locale: 'fr' 
+  numerical_ref: true
   show_id: false
+  item_per_page: 10
 addons:
 - slidev-addon-citations
 ---
@@ -85,5 +86,14 @@ src: ./pages/09-security.md
 ---
 
 ---
+src: ./pages/10-books.md
+---
+
+---
 src: ./pages/99-bibliography.md
 ---
+
+---
+layout: end
+---
+

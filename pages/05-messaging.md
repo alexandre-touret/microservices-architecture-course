@@ -2,7 +2,7 @@
 layout: section
 ---
 
-# Communication inter services
+# Messageries asynchrones
 
 --- 
 
