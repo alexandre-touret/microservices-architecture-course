@@ -7,3 +7,5 @@ dist
 components.d.ts
 *.pdf
 .idea
+slides-export.pptx
+slides-export.pdf
