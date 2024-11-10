@@ -84,7 +84,7 @@ System_Boundary(donutssystem, "Donuts At Home") {
             Container(shoppingService,"Shopping API","","Java, Spring Boot, Docker")
             ContainerDb(shoppingDb,"Shopping DB","","PostgreSQL")
         }
-        System_Boundary(eventProcessing,"Event Processing Service",$tags="newboundary"){
+        System_Boundary(shoppingAPI,"Event Processing Service",$tags="newboundary"){
             ContainerQueue(eventManager,"Event Processing","","Kafka")
             Container("paymentconnect","Payment Connector","","Kafka Connect")
         }
@@ -105,6 +105,10 @@ Rel(shoppingService,eventManager,"Kafka")
 
 Rel(paymentconnect,SIPS,"HTTPS")
 Rel(paymentconnect,eventManager,"Kafka")
+
+Lay_D(shoppingAPI,shoppingAPI)
+
+
 @enduml
 
 ```
