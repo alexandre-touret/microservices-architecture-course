@@ -117,6 +117,12 @@ En informatique, le syndrome du plat de spaghettis est une dégradation qui touc
 
 ---
 
+![spaghetti](/public/Spaghetti-code-big-ball-of-mud-grid.jpeg)
+
+_Source: [Scale Your App](https://scaleyourapp.com/spaghetti-code-explained/)_
+
+---
+
 ### Conséquences du _Spaghetti Code_
 
 1. Maintenance complexe
@@ -127,7 +133,7 @@ En informatique, le syndrome du plat de spaghettis est une dégradation qui touc
 
 ### Comment l'éviter ?
 
-1. Définir les limites claire (_Bounded Context_[@bounded-context])
+1. Définir les limites claires (_Bounded Context_[@bounded-context])
 2. Utilisation des messages asynchrones
 3. Prise en compte de la résilience dès la conception (ex. _Circuit Breaker_[@circuit-breaker-pattern])
 4. Isolation des données (c.-à-d. 1 base de données par microservice)
